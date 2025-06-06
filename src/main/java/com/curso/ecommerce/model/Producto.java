@@ -4,29 +4,52 @@
  */
 package com.curso.ecommerce.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 /**
  *
  * @author ORLANDO
  */
+@Entity
+@Table(name = "productos")
 public class Producto {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String descripcion;
     private String imagen;
     private Double precion;
     private int cantidad;
+    
+    @ManyToOne
+    private Usuario usuario;
+    
+   
 
     public Producto() {
     }
 
-    public Producto(Integer id, String nombre, String descripcion, String imagen, Double precion, int cantidad) {
+    public Producto(Integer id, String nombre, String descripcion, String imagen, Double precion, int cantidad, Usuario usuario) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;
         this.precion = precion;
         this.cantidad = cantidad;
+        this.usuario = usuario;
     }
+
+  
 
     public Integer getId() {
         return id;
@@ -74,6 +97,14 @@ public class Producto {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override
