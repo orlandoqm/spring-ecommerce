@@ -4,8 +4,7 @@
  */
 package com.curso.ecommerce.model;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +27,7 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private String imagen;
-    private Double precion;
+    private Double precio;
     private int cantidad;
     
     @ManyToOne
@@ -39,12 +38,12 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(Integer id, String nombre, String descripcion, String imagen, Double precion, int cantidad, Usuario usuario) {
+    public Producto(Integer id, String nombre, String descripcion, String imagen, Double precio, int cantidad, Usuario usuario) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;
-        this.precion = precion;
+        this.precio = precio;
         this.cantidad = cantidad;
         this.usuario = usuario;
     }
@@ -83,12 +82,12 @@ public class Producto {
         this.imagen = imagen;
     }
 
-    public Double getPrecion() {
-        return precion;
+    public Double getPrecio() {
+        return precio;
     }
 
-    public void setPrecion(Double precion) {
-        this.precion = precion;
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 
     public int getCantidad() {
@@ -109,7 +108,9 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen + ", precion=" + precion + ", cantidad=" + cantidad + '}';
+        return "Producto{" + "id=" + id + ", nombre=" + nombre 
+                + ", descripcion=" + descripcion + ", imagen=" + imagen 
+                + ", precio=" + precio + ", cantidad=" + cantidad + '}';
     }
     
     
