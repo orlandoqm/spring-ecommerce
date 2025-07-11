@@ -6,7 +6,6 @@ package com.curso.ecommerce.controller;
 
 import com.curso.ecommerce.model.Producto;
 import com.curso.ecommerce.model.Usuario;
-import com.curso.ecommerce.service.ProductoService;
 import com.curso.ecommerce.service.UploadFileService;
 import java.io.IOException;
 import java.util.Optional;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import com.curso.ecommerce.service.IProductoService;
 
 /**
  *
@@ -32,7 +32,7 @@ public class ProductoController {
     private final Logger LOGGER = LoggerFactory.getLogger(ProductoController.class);
 
     @Autowired
-    private ProductoService productoService;
+    private IProductoService productoService;
 
     @Autowired
     private UploadFileService upload;
