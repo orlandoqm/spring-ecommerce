@@ -6,6 +6,8 @@ package com.curso.ecommerce.controller;
 
 import com.curso.ecommerce.model.Usuario;
 import com.curso.ecommerce.service.IUsuarioService;
+import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,32 @@ public class UsuarioController {
         LOGGER.info("datos del usuario {}",usuario);
         usuario.setTipo("USER");
         usuarioService.save(usuario);
+        return "redirect:/";
+    }
+    
+    @GetMapping("/login")
+    public String login(){
+        
+        return "usuario/login";
+    }
+    
+    @PostMapping("/acceder")
+    public String acceder(Usuario usuario, HttpSession sesion){
+        LOGGER.info("Datos del usuario {}",usuario);
+        Optional<Usuario> user= usuarioService.findByEmail(usuario.getEmail());
+        //LOGGER.info("datos usuario encontrado{}",user.get());
+        
+        if(user.isPresent()){
+            sesion.setAttribute("idusuario", user.get().getId());
+            if(user.get().getTipo().equals("ADMIN")){
+                return "redirect:/administrador";
+            }else{
+                return "redirect:/";
+            }
+        }else{
+            LOGGER.info("usuario no exite");
+        }
+        
         return "redirect:/";
     }
     
